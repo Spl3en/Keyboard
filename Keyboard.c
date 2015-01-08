@@ -6,12 +6,12 @@
  * unsigned char key : A keycode of the key to check (for special keys, see here : http://www.kbdedit.com/manual/low_level_vk_list.html)
  * Return : true if the key is typed, false otherwise
  */
-EXPORT_FUNCTION bool
-is_key_typed (
+bool
+Keyboard_is_key_typed (
 	unsigned char key
 ) {
 	static KeyState states[sizeof(key)] = {[0 ... (sizeof(key)-1)] = KEY_STATE_RELEASED};
-	bool keyPressed = is_key_pressed (key);
+	bool keyPressed = Keyboard_is_key_pressed (key);
 
 	if (keyPressed) {
 		// The key has been pressed but not released yet
@@ -34,8 +34,8 @@ is_key_typed (
  * unsigned char key : A keycode of the key to check (for special keys, see here : http://www.kbdedit.com/manual/low_level_vk_list.html)
  * Return : true if the key is pressed, false otherwise
  */
-EXPORT_FUNCTION bool
-is_key_pressed (
+bool
+Keyboard_is_key_pressed (
 	unsigned char key
 ) {
 	return GetKeyState (key) < 0;
